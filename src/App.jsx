@@ -373,6 +373,7 @@ export default function App() {
           <div className="tip"><strong>Como lançar:</strong> use <code>8</code> para horas normais ou <code>8+2</code> para 8h normais + 2h extras.</div>
           <div className="toolbar-actions"><button className="btn ghost" onClick={preencherDiasUteis}>Preencher úteis (8h)</button><button className="btn danger-ghost" onClick={limparCompetencia}>Limpar mês</button></div>
         </div>
+        <div className="mobile-scroll-hint"><span>←</span> Deslize para apontar os outros dias <span>→</span></div>
         <div className="table-wrap schedule-wrap">
           <table className="schedule-table">
             <thead><tr><th className="employee-column">Funcionário</th>{dias.map((dia) => {
