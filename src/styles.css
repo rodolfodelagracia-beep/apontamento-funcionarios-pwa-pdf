@@ -103,6 +103,8 @@ code { padding: 2px 5px; color: var(--teal-dark); background: var(--teal-soft); 
 .schedule-table td input { width: 52px; height: 36px; padding: 0 3px; border: 1px solid transparent; border-radius: 8px; color: var(--ink); background: transparent; text-align: center; font-size: 12px; font-weight: 700; }
 .schedule-table td input:hover, .schedule-table td input:focus { border-color: #a8cfc4; background: white; }
 .schedule-table td input.invalid { color: var(--danger); border-color: #e89c9c; background: #fff4f4; }
+.entry-control { position: relative; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+.mobile-plus { display: none; }
 .alert { margin-top: 12px; padding: 12px 14px; color: #953636; background: #fff3f3; border: 1px solid #f1d1d1; border-radius: 10px; font-size: 12px; font-weight: 600; }
 
 .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -186,12 +188,15 @@ footer span:first-child { color: var(--teal-dark); font-weight: 800; }
   .mobile-scroll-hint { display: flex; align-items: center; justify-content: center; gap: 8px; margin: -2px 0 10px; color: var(--teal-dark); font-size: 11px; font-weight: 700; }
   .mobile-scroll-hint span { color: var(--teal); font-size: 16px; }
   .schedule-wrap { width: calc(100% + 8px); max-height: 58vh; margin-right: -4px; margin-left: -4px; }
-  .schedule-table th, .schedule-table td { min-width: 82px; height: 72px; padding: 7px 6px; }
-  .schedule-table .employee-column { min-width: 138px; max-width: 138px; padding-left: 10px; }
+  .schedule-table th, .schedule-table td { min-width: 96px; height: 72px; padding: 7px 4px; }
+  .schedule-table .employee-column { min-width: 132px; max-width: 132px; padding-left: 10px; }
   .schedule-table .employee-column strong { font-size: 12px; }
   .schedule-table .employee-column span { font-size: 9px; }
   .schedule-table .total-column { position: static; min-width: 112px; box-shadow: none; }
-  .schedule-table td input { width: 66px; height: 44px; border-color: #dce5e0; background: #fff; font-size: 14px; }
+  .entry-control { width: 86px; }
+  .schedule-table td input { width: 86px; height: 44px; padding: 0 31px 0 8px; border-color: #dce5e0; background: #fff; text-align: left; font-size: 14px; }
+  .mobile-plus { position: absolute; right: 4px; top: 50%; display: grid; width: 25px; height: 34px; padding: 0; transform: translateY(-50%); place-items: center; color: var(--teal); background: var(--teal-soft); border: 0; border-radius: 7px; font-size: 20px; font-weight: 700; line-height: 1; cursor: pointer; }
+  .mobile-plus:active { background: #ccebe3; transform: translateY(-50%) scale(.94); }
   .summary-numbers { grid-template-columns: repeat(2, 1fr); gap: 12px 0; }
   .summary-numbers div:nth-child(2) { border-right: 0; }
   .employee-item { grid-template-columns: auto 1fr auto; }

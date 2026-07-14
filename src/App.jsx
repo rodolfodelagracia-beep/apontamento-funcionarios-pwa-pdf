@@ -243,6 +243,12 @@ export default function App() {
     setLancamentos((anterior) => ({ ...anterior, [funcionarioId]: { ...(anterior[funcionarioId] || {}), [data]: valor } }))
   }
 
+  const inserirHoraExtra = (funcionarioId, data, valorAtual) => {
+    const valor = String(valorAtual || '').trim()
+    if (valor.includes('+')) return
+    atualizarLancamento(funcionarioId, data, `${valor || '8'}+`)
+  }
+
   const preencherDiasUteis = () => {
     setLancamentos((anterior) => {
       const proximo = { ...anterior }
@@ -383,7 +389,10 @@ export default function App() {
             <tbody>{resumo.map((funcionario) => <tr key={funcionario.id}>
               <td className="employee-column"><strong>{funcionario.nome}</strong><span>{funcionario.funcao}</span></td>
               {funcionario.diario.map((dia) => <td key={dia.iso} className={dia.especial ? 'special-day' : dia.semana === 6 ? 'weekend' : ''}>
-                <input aria-label={`${funcionario.nome}, dia ${dia.dia}`} className={dia.valido ? '' : 'invalid'} inputMode="decimal" placeholder="—" value={dia.raw} onChange={(e) => atualizarLancamento(funcionario.id, dia.iso, e.target.value)} title={dia.valido ? '' : 'Use 8 ou 8+2, com no máximo 24 horas'} />
+                <div className="entry-control">
+                  <input aria-label={`${funcionario.nome}, dia ${dia.dia}`} className={dia.valido ? '' : 'invalid'} inputMode="decimal" placeholder="—" value={dia.raw} onChange={(e) => atualizarLancamento(funcionario.id, dia.iso, e.target.value)} title={dia.valido ? '' : 'Use 8 ou 8+2, com no máximo 24 horas'} />
+                  <button type="button" className="mobile-plus" aria-label={`Adicionar + em ${funcionario.nome}, dia ${dia.dia}`} title="Adicionar hora extra" onPointerDown={(e) => e.preventDefault()} onClick={() => inserirHoraExtra(funcionario.id, dia.iso, dia.raw)}>+</button>
+                </div>
               </td>)}
               <td className="total-column"><strong>{formatHours(funcionario.base + funcionario.he50 + funcionario.he100)}h</strong><span>{formatCurrency(funcionario.total)}</span></td>
             </tr>)}</tbody>
